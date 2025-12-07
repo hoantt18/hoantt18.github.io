@@ -21,30 +21,11 @@
         }
 
         body {
-            position: relative;
             font-family: 'EB Garamond', serif;
-            background: transparent;
             color: #333;
-        }
 
-        /* BACKGROUND ẢNH TOÀN TRANG (ngoài cùng) */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: url("images/bg-pic.jpg") center/cover no-repeat;
-            filter: blur(6px) brightness(0.9);
-            opacity: 0.25;          /* chỉnh độ mờ ở đây */
-            z-index: -2;
-        }
-
-        /* Lớp nền nhẹ để nội dung đọc dễ hơn */
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: rgba(247, 247, 251, 0.7);
-            z-index: -1;
+            /* ẢNH NỀN TOÀN TRANG – KHÔNG BLUR, KHÔNG PHỦ LÊN COVER */
+            background: url("images/bg-pic.jpg") center/cover fixed no-repeat;
         }
 
         /* ===== HEADER ===== */
@@ -55,11 +36,16 @@
             color: #fff;
             overflow: hidden;
             height: 420px;
-            background-image: url("images/bg-img.jpg"); /* ảnh nền riêng cho header (fallback) */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+
+            /* riêng header có một lớp tối nhẹ cho dễ đọc text */
+            background:
+                linear-gradient(rgba(10,10,20,0.45), rgba(10,10,20,0.55)),
+                url("images/bg-img.jpg") center/cover no-repeat;
         }
+
+        /* nếu không có bg-img.jpg thì có thể dùng lại bg-pic.jpg:
+           background: linear-gradient(...), url("images/bg-pic.jpg") center/cover no-repeat;
+        */
 
         #bg-video {
             position: absolute;
@@ -67,7 +53,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: blur(4px) brightness(0.6);
+            filter: blur(4px) brightness(0.6); /* CHỈ LÀM MỜ VIDEO, KHÔNG ẢNH HƯỞNG AVATAR */
             z-index: -1;
         }
 
@@ -108,7 +94,7 @@
             background: #fff;
             padding: 20px 25px;
             border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             margin-bottom: 25px;
             line-height: 1.6;
         }
@@ -127,7 +113,8 @@
             padding: 20px;
             margin-top: 20px;
             font-size: 14px;
-            color: #777;
+            color: #eee;
+            background: rgba(0,0,0,0.5);
         }
 
         /* ===== EXPERIENCE & ACHIEVEMENTS – GRADIENT TIMELINE ===== */
@@ -327,7 +314,7 @@
 
     <!-- HEADER -->
     <header>
-        <!-- Nếu không muốn video, có thể xoá <video> này -->
+        <!-- Nếu không muốn video, có thể xoá cả <video> này -->
         <video autoplay muted loop playsinline id="bg-video">
             <source src="images/bg-vid.mp4" type="video/mp4">
         </video>
