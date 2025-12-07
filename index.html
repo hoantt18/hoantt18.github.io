@@ -22,54 +22,56 @@
             color: #333;
         }
 
-        /* Header Styling */
+        /* ===== HEADER + VIDEO NỀN ===== */
         header {
             position: relative;
             text-align: center;
             padding: 60px 20px;
             color: #fff;
             overflow: hidden;
-            height: 450px;  /* Set height of header */
+            height: 100vh;      /* full chiều cao màn hình */
+            min-height: 450px;  /* để màn hình nhỏ vẫn ok */
         }
 
-        /* Video Background Setup */
         #bg-video {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
+            width: 140%;      /* rộng hơn màn hình để không bị viền đen */
+            height: 140%;
             object-fit: cover;
-            transform: rotate(90deg) scale(1.5); /* Rotate video to make it landscape */
-            filter: blur(8px) brightness(0.6);  /* Apply blur and darken */
+            object-position: center;
+            transform: rotate(90deg) translate(-50%, -50%);
+            transform-origin: center center;
+            filter: blur(8px) brightness(0.6);
             z-index: -1;
         }
 
-        /* Header Content Styling */
         header h1 {
-            font-size: 36px;
-            margin: 20px 0;
+            font-size: 40px;
+            margin: 20px 0 10px;
         }
 
         header p {
-            font-size: 18px;
-            color: #ddd;
-            margin-top: 8px;
+            font-size: 20px;
+            color: #eee;
+            margin-top: 4px;
         }
 
         header img {
             width: 180px;
             height: 180px;
             border-radius: 50%;
-            margin-top: 20px;
+            margin-top: 28px;
             object-fit: cover;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
 
-        /* Section Styling */
+        /* ===== NỘI DUNG BÊN DƯỚI ===== */
         section {
             max-width: 800px;
             margin: 40px auto;
-            padding: 0 20px;
+            padding: 0 20px 40px;
         }
 
         h2 {
@@ -99,12 +101,12 @@
         footer {
             text-align: center;
             padding: 20px;
-            margin-top: 40px;
+            margin-top: 20px;
             font-size: 14px;
             color: #777;
         }
 
-        /* My Things Gallery */
+        /* ===== MY THINGS GALLERY ===== */
         .gallery {
             display: flex;
             flex-wrap: wrap;
@@ -124,14 +126,12 @@
         .gallery-item img:hover {
             transform: scale(1.05);
         }
-
     </style>
-
 </head>
 
 <body>
 
-    <!-- Header with Video Background -->
+    <!-- HEADER + VIDEO NỀN -->
     <header>
         <video autoplay muted loop playsinline id="bg-video">
             <source src="images/bg-vid.mp4" type="video/mp4">
@@ -142,7 +142,7 @@
         <img src="images/hoantt1.jpg" alt="Profile Image">
     </header>
 
-    <!-- About Me Section -->
+    <!-- ABOUT + CÁC MỤC KHÁC -->
     <section>
         <h2>About Me</h2>
         <div class="box">
@@ -164,27 +164,23 @@
             </p>
         </div>
 
-        <!-- Personal Information Section -->
         <h2>Personal Information</h2>
         <div class="box">
             <p><span class="title">Name:</span> Nguyen Thi Thu Hoa</p>
             <p><span class="title">Date of Birth:</span> 18/11/2005</p>
         </div>
 
-        <!-- Contact Section -->
         <h2>Contact</h2>
         <div class="box social">
             <p>Email: <a href="mailto:K62.2314510045@ftu.edu.vn">K62.2314510045@ftu.edu.vn</a></p>
         </div>
 
-        <!-- Education Section -->
         <h2>Education</h2>
         <div class="box">
             <p><span class="title">Foreign Trade University – Hanoi</span></p>
             <p>Major: International Business</p>
         </div>
 
-        <!-- Experience Section -->
         <h2>Experience</h2>
         <div class="box">
             <ul>
@@ -194,47 +190,37 @@
             </ul>
         </div>
 
-        <!-- My Things Section -->
         <h2>My Things</h2>
         <div class="box">
             <div class="gallery">
                 <div class="gallery-item">
                     <img src="images/thing1.jpg" alt="My thing 1">
                 </div>
-
                 <div class="gallery-item">
                     <img src="images/thing2.jpg" alt="My thing 2">
                 </div>
-
                 <div class="gallery-item">
                     <img src="images/thing3.jpg" alt="My thing 3">
                 </div>
-
                 <div class="gallery-item">
                     <img src="images/thing4.jpg" alt="My thing 4">
                 </div>
-
                 <div class="gallery-item">
                     <img src="images/thing5.jpg" alt="My thing 5">
                 </div>
-
                 <div class="gallery-item">
                     <img src="images/thing6.jpg" alt="My thing 6">
                 </div>
-
                 <div class="gallery-item">
                     <img src="images/thing7.jpg" alt="My thing 7">
                 </div>
-
                 <div class="gallery-item">
                     <img src="images/thing8.jpg" alt="My thing 8">
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Footer Section -->
     <footer>
         © 2025 – Nguyen Thi Thu Hoa
     </footer>
