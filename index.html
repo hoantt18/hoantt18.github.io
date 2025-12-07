@@ -12,13 +12,28 @@
         /* RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html, body {
+            min-height: 100%;
+        }
+
         /* ============================
            1. NỀN TOÀN TRANG (BODY)
            ============================ */
         body {
             font-family: 'EB Garamond', serif;
-            background: url("images/bg-pic.jpg") center/cover fixed no-repeat;
             color: #333;
+            background: #000;
+            position: relative;
+        }
+
+        /* Ảnh nền riêng, blur, không giảm opacity, không ảnh hưởng cover */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url("images/bg-pic.jpg") center/cover no-repeat;
+            filter: blur(4px); /* blur mạnh hơn để che bớt vỡ hình */
+            z-index: -1;
         }
 
         /* ============================
@@ -29,28 +44,23 @@
             text-align: center;
             padding: 70px 20px 60px;
             height: 420px;
+            color: #fff;
+            overflow: hidden;
 
-            /* Nền riêng cho header (KHÔNG dùng nền body) */
+            /* nền riêng cho header */
             background:
                 linear-gradient(rgba(20,20,20,0.45), rgba(20,20,20,0.45)),
                 url("images/bg-img.jpg") center/cover no-repeat;
-
-            /* Có thể thay bg-img = bg-pic nếu muốn */
-            overflow: hidden;
-            color: white;
         }
 
-        /* Video nền chỉ ở header */
+        /* Video nền chỉ áp dụng cho header */
         #bg-video {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-
-            /* BLUR NHẸ 1px NHƯ BẠN YÊU CẦU */
-            filter: blur(10px) brightness(0.7);
-
+            filter: blur(1px) brightness(0.7);  /* blur = 1 như bạn yêu cầu ban đầu */
             z-index: -1;
         }
 
@@ -74,7 +84,7 @@
         }
 
         /* ============================
-           SECTION / BOX
+           3. SECTION / BOX
            ============================ */
         section {
             max-width: 900px;
@@ -82,10 +92,12 @@
             padding: 0 20px 40px;
         }
 
+        /* Title section màu trắng + shadow để rõ trên nền tối */
         h2 {
             font-size: 28px;
             margin: 20px 0 12px;
-            color: #333;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
         }
 
         .box {
@@ -94,10 +106,20 @@
             border-radius: 14px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.12);
             margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .title {
+            font-weight: 600;
+        }
+
+        .social a {
+            text-decoration: none;
+            color: #0077ff;
         }
 
         /* ============================
-           TIMELINE EXPERIENCE & ACHIEVEMENTS
+           4. EXPERIENCE & ACHIEVEMENTS – TIMELINE
            ============================ */
         .timeline-wrapper {
             padding: 30px;
@@ -105,6 +127,7 @@
             background: linear-gradient(135deg, #5a5f7d, #6d4c4c, #1f1f25);
             color: white;
             box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+            margin-bottom: 25px;
         }
 
         .timeline {
@@ -141,6 +164,7 @@
         }
 
         .timeline-content { margin-left: 32px; }
+
         .timeline-tag {
             font-size: 11px;
             padding: 3px 10px;
@@ -148,6 +172,10 @@
             background: rgba(255,255,255,0.14);
             letter-spacing: 1px;
             text-transform: uppercase;
+        }
+
+        .timeline-tag--soft {
+            background: rgba(255,255,255,0.14);
         }
 
         .timeline-role {
@@ -158,6 +186,12 @@
 
         .timeline-place { font-size: 16px; opacity: 0.9; }
 
+        .timeline-list {
+            margin-top: 6px;
+            padding-left: 20px;
+            font-size: 16px;
+        }
+
         .timeline-divider {
             margin: 25px 0 12px;
             text-transform: uppercase;
@@ -167,7 +201,7 @@
         }
 
         /* ============================
-           SKILLS SECTION
+           5. SKILLS
            ============================ */
         .skills-container {
             display: flex;
@@ -197,8 +231,13 @@
             list-style-type: disc;
         }
 
+        .skill-box li {
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
         /* ============================
-           MY THINGS
+           6. MY THINGS GALLERY
            ============================ */
         .gallery {
             display: flex;
@@ -227,14 +266,22 @@
             background: rgba(0,0,0,0.55);
             color: #eee;
         }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            header {
+                height: 360px;
+                padding-top: 40px;
+            }
+            header h1 { font-size: 32px; }
+            header p { font-size: 16px; }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- ============================
-         HEADER SEPARATE BACKGROUND
-         ============================ -->
+    <!-- HEADER (COVER RIÊNG) -->
     <header>
         <video autoplay muted loop playsinline id="bg-video">
             <source src="images/bg-vid.mp4" type="video/mp4">
@@ -247,32 +294,49 @@
     </header>
 
     <section>
-
+        <!-- ABOUT ME FULL -->
         <h2>About Me</h2>
         <div class="box">
-            <p>I’m Hòa — an ENFJ and a true <i>chill girl</i> at heart...</p>
+            <p>
+                I’m Hòa — an ENFJ and a true <i>chill girl</i> at heart, with a special affection 
+                for Chinese handwriting and everything delicate and aesthetically pleasing. 
+                I enjoy learning something new every day, taking peaceful walks, and watching the 
+                sky and the stars — small, quiet moments that inspire me.
+            </p>
+            <p>
+                Even though I give off a gentle and calm vibe, I handle pressure quite well.
+                I love creative and detail-oriented work, and I enjoy refining every little 
+                element to craft a polished final product.
+            </p>
+            <p>
+                In both work and learning, I follow a clear and structured approach while 
+                maintaining a mindset of continuous growth. I aim to create products that are 
+                visually appealing, easy to understand, and meaningful for those who interact with them.
+            </p>
         </div>
 
+        <!-- PERSONAL INFO -->
         <h2>Personal Information</h2>
         <div class="box">
-            <p><strong>Name:</strong> Nguyen Thi Thu Hoa</p>
-            <p><strong>Date of Birth:</strong> 18/11/2005</p>
+            <p><span class="title">Name:</span> Nguyen Thi Thu Hoa</p>
+            <p><span class="title">Date of Birth:</span> 18/11/2005</p>
         </div>
 
+        <!-- CONTACT -->
         <h2>Contact</h2>
-        <div class="box">
+        <div class="box social">
             <p>Email: <a href="mailto:K62.2314510045@ftu.edu.vn">K62.2314510045@ftu.edu.vn</a></p>
         </div>
 
+        <!-- EDUCATION -->
         <h2>Education</h2>
         <div class="box">
-            <p><strong>Foreign Trade University – Hanoi</strong></p>
+            <p><span class="title">Foreign Trade University – Hanoi</span></p>
             <p>Major: International Business</p>
         </div>
 
         <!-- EXPERIENCE & ACHIEVEMENTS -->
         <h2>Experience & Achievements</h2>
-
         <div class="timeline-wrapper">
             <div class="timeline">
 
@@ -298,7 +362,7 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-tag">Experience</span>
-                        <p class="timeline-role">Vice Head, Media Dept.</p>
+                        <p class="timeline-role">Vice Head of the Media Department</p>
                         <p class="timeline-place">FTU Chinese Club</p>
                     </div>
                 </div>
@@ -319,7 +383,7 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <span class="timeline-tag">Achievement</span>
+                        <span class="timeline-tag timeline-tag--soft">Achievement</span>
                         <ul class="timeline-list">
                             <li>Top30 TechGo</li>
                             <li>Top15 We Are Hoteliers</li>
@@ -347,7 +411,7 @@
                 <h3>Design Skills</h3>
                 <ul>
                     <li>Adobe Illustrator</li>
-                    <li>Photoshop</li>
+                    <li>Adobe Photoshop</li>
                     <li>Canva</li>
                     <li>Capcut</li>
                     <li>Figma</li>
@@ -360,6 +424,37 @@
                     <li>English</li>
                     <li>Chinese</li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- MY THINGS -->
+        <h2 style="margin-top:35px;">My Things</h2>
+        <div class="box">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/thing1.jpg" alt="My thing 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/thing2.jpg" alt="My thing 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/thing3.jpg" alt="My thing 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/thing4.jpg" alt="My thing 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/thing5.jpg" alt="My thing 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/thing6.jpg" alt="My thing 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/thing7.jpg" alt="My thing 7">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/thing8.jpg" alt="My thing 8">
+                </div>
             </div>
         </div>
 
