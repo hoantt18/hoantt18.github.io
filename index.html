@@ -16,10 +16,35 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            min-height: 100%;
+        }
+
         body {
+            position: relative;
             font-family: 'EB Garamond', serif;
-            background: #f7f7fb;
+            background: transparent;
             color: #333;
+        }
+
+        /* BACKGROUND ẢNH TOÀN TRANG (ngoài cùng) */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url("images/bg-pic.jpg") center/cover no-repeat;
+            filter: blur(6px) brightness(0.9);
+            opacity: 0.25;          /* chỉnh độ mờ ở đây */
+            z-index: -2;
+        }
+
+        /* Lớp nền nhẹ để nội dung đọc dễ hơn */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(247, 247, 251, 0.7);
+            z-index: -1;
         }
 
         /* ===== HEADER ===== */
@@ -30,7 +55,7 @@
             color: #fff;
             overflow: hidden;
             height: 420px;
-            background-image: url("images/bg-img.jpg"); /* ảnh nền fallback */
+            background-image: url("images/bg-img.jpg"); /* ảnh nền riêng cho header (fallback) */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -302,7 +327,7 @@
 
     <!-- HEADER -->
     <header>
-        <!-- Nếu không muốn video, xoá hẳn <video> này -->
+        <!-- Nếu không muốn video, có thể xoá <video> này -->
         <video autoplay muted loop playsinline id="bg-video">
             <source src="images/bg-vid.mp4" type="video/mp4">
         </video>
@@ -359,7 +384,6 @@
         <div class="timeline-wrapper">
             <div class="timeline">
 
-                <!-- Experience -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
@@ -398,10 +422,8 @@
                     </div>
                 </div>
 
-                <!-- Divider -->
                 <div class="timeline-divider">Achievements</div>
 
-                <!-- Achievements -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
