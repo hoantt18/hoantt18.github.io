@@ -6,37 +6,73 @@
     <title>Nguyen Thi Thu Hoa | Portfolio</title>
 
     <style>
-        body {
+        /* RESET STYLES */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             font-family: "Segoe UI", sans-serif;
             background: #f7f7fb;
             color: #333;
         }
+
         header {
+            position: relative;
             text-align: center;
             padding: 60px 20px;
-            background: #fff;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            color: #fff;
+            overflow: hidden;
         }
+
+        /* Video Background Setup */
+        #bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: rotate(90deg) scale(1.5); /* Rotate video and scale it */
+            filter: blur(8px) brightness(0.6);  /* Apply blur and make it darker */
+            z-index: -1;
+        }
+
+        /* Header Content Styling */
         header h1 {
             font-size: 36px;
-            margin: 0;
+            margin: 20px 0;
         }
+
         header p {
             font-size: 18px;
-            color: #666;
+            color: #ddd;
             margin-top: 8px;
         }
+
+        header img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-top: 20px;
+            object-fit: cover;
+        }
+
+        /* Section Styling */
         section {
             max-width: 800px;
             margin: 40px auto;
             padding: 0 20px;
         }
+
         h2 {
             font-size: 26px;
             margin-bottom: 10px;
             color: #444;
         }
+
         .box {
             background: #fff;
             padding: 20px 25px;
@@ -45,13 +81,16 @@
             margin-bottom: 25px;
             line-height: 1.6;
         }
+
         .title {
             font-weight: 600;
         }
+
         .social a {
             text-decoration: none;
             color: #0077ff;
         }
+
         footer {
             text-align: center;
             padding: 20px;
@@ -80,19 +119,25 @@
         .gallery-item img:hover {
             transform: scale(1.05);
         }
+
     </style>
+
 </head>
 
 <body>
 
+    <!-- Header with Video Background -->
     <header>
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="images/bg-vid.mp4" type="video/mp4">
+        </video>
+
         <h1>Nguyen Thi Thu Hoa</h1>
         <p>Creative Learner & Visual Enthusiast | ENFJ</p>
-        <img src="images/hoantt1.jpg"
-             alt="Profile Image"
-             style="width:180px; height:180px; border-radius:50%; margin-top:20px; object-fit:cover;">
+        <img src="images/hoantt1.jpg" alt="Profile Image">
     </header>
 
+    <!-- About Me Section -->
     <section>
         <h2>About Me</h2>
         <div class="box">
@@ -114,23 +159,27 @@
             </p>
         </div>
 
+        <!-- Personal Information Section -->
         <h2>Personal Information</h2>
         <div class="box">
             <p><span class="title">Name:</span> Nguyen Thi Thu Hoa</p>
             <p><span class="title">Date of Birth:</span> 18/11/2005</p>
         </div>
 
+        <!-- Contact Section -->
         <h2>Contact</h2>
         <div class="box social">
             <p>Email: <a href="mailto:K62.2314510045@ftu.edu.vn">K62.2314510045@ftu.edu.vn</a></p>
         </div>
 
+        <!-- Education Section -->
         <h2>Education</h2>
         <div class="box">
             <p><span class="title">Foreign Trade University – Hanoi</span></p>
             <p>Major: International Business</p>
         </div>
 
+        <!-- Experience Section -->
         <h2>Experience</h2>
         <div class="box">
             <ul>
@@ -140,11 +189,10 @@
             </ul>
         </div>
 
-        <!-- My Things -->
+        <!-- My Things Section -->
         <h2>My Things</h2>
         <div class="box">
             <div class="gallery">
-
                 <div class="gallery-item">
                     <img src="images/thing1.jpg" alt="My thing 1">
                 </div>
@@ -179,12 +227,13 @@
 
             </div>
         </div>
-
     </section>
 
+    <!-- Footer Section -->
     <footer>
         © 2025 – Nguyen Thi Thu Hoa
     </footer>
 
 </body>
 </html>
+
