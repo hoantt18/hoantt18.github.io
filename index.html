@@ -41,7 +41,8 @@
             height: 140%;
             object-fit: cover;
             object-position: center;
-            transform: rotate(90deg) translate(-50%, -50%);
+            /* QUAN TRỌNG: translate trước rồi mới rotate + scale nhẹ */
+            transform: translate(-50%, -50%) rotate(90deg) scale(1.1);
             transform-origin: center center;
             filter: blur(4px) brightness(0.6);
             z-index: -1;
