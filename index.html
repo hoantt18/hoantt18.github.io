@@ -22,28 +22,30 @@
             color: #333;
         }
 
-        /* ===== HEADER + VIDEO NỀN ===== */
+        /* ===== HEADER + BACKGROUND ===== */
         header {
             position: relative;
             text-align: center;
             padding: 60px 20px;
             color: #fff;
             overflow: hidden;
-            height: 200px;      /* full chiều cao màn hình */
-            min-height: 450px;  /* để màn hình nhỏ vẫn ok */
+            height: 420px; /* banner cao vừa phải */
+
+            /* Ảnh nền fallback */
+            background-image: url("images/bg-img.jpg"); /* đổi tên nếu khác */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
+        /* Video nền (nếu có) – sẽ phủ lên trên ảnh background */
         #bg-video {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 140%;      /* rộng hơn màn hình để không bị viền đen */
-            height: 140%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            object-position: center;
-            /* QUAN TRỌNG: translate trước rồi mới rotate + scale nhẹ */
-            transform: translate(-50%, -50%) rotate(90deg) scale(1.1);
-            transform-origin: center center;
             filter: blur(4px) brightness(0.6);
             z-index: -1;
         }
@@ -68,7 +70,7 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
 
-        /* ===== NỘI DUNG BÊN DƯỚI ===== */
+        /* ===== SECTIONS & BOXES ===== */
         section {
             max-width: 800px;
             margin: 40px auto;
@@ -107,7 +109,150 @@
             color: #777;
         }
 
+        /* ===== EXPERIENCE & ACHIEVEMENTS TIMELINE ===== */
+
+        .timeline-wrapper {
+            padding-top: 25px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+            margin-top: 10px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #d6c4ff, #f6b5ff);
+            opacity: 0.9;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 26px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 6px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid #c48cff;
+            box-shadow: 0 0 0 4px rgba(196, 140, 255, 0.15);
+        }
+
+        .timeline-content {
+            margin-left: 28px;
+        }
+
+        .timeline-tag {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(196, 140, 255, 0.12);
+            color: #7e4bb8;
+            margin-bottom: 4px;
+        }
+
+        .timeline-tag--soft {
+            background: rgba(120, 180, 255, 0.12);
+            color: #4373c5;
+        }
+
+        .timeline-role {
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 2px;
+        }
+
+        .timeline-place {
+            font-size: 15px;
+            color: #555;
+        }
+
+        .timeline-list {
+            margin-top: 4px;
+            padding-left: 18px;
+            font-size: 15px;
+        }
+
+        .timeline-divider {
+            margin: 18px 0 12px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #888;
+            position: relative;
+        }
+
+        .timeline-divider::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            background: #e0e0e0;
+            top: 50%;
+            left: 110px;
+            right: 0;
+        }
+
+        /* ===== SKILLS SECTION ===== */
+
+        .skills-container {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .skill-box {
+            flex: 1;
+            min-width: 260px;
+            padding: 25px 28px;
+            border-radius: 28px;
+            color: white;
+            background: linear-gradient(135deg, #5a5f7d, #6d4c4c, #1f1f25);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .skill-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+        }
+
+        .skill-box h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .skill-box ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .skill-box li {
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
         /* ===== MY THINGS GALLERY ===== */
+
         .gallery {
             display: flex;
             flex-wrap: wrap;
@@ -127,13 +272,30 @@
         .gallery-item img:hover {
             transform: scale(1.05);
         }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            header {
+                height: 360px;
+                padding-top: 40px;
+            }
+
+            header h1 {
+                font-size: 30px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- HEADER + VIDEO NỀN -->
+    <!-- HEADER + OPTIONAL VIDEO BACKGROUND -->
     <header>
+        <!-- Nếu không cần video, bạn có thể xoá <video> này luôn -->
         <video autoplay muted loop playsinline id="bg-video">
             <source src="images/bg-vid.mp4" type="video/mp4">
         </video>
@@ -143,8 +305,8 @@
         <img src="images/hoantt1.jpg" alt="Profile Image">
     </header>
 
-    <!-- ABOUT + CÁC MỤC KHÁC -->
     <section>
+        <!-- ABOUT -->
         <h2>About Me</h2>
         <div class="box">
             <p>
@@ -165,32 +327,126 @@
             </p>
         </div>
 
+        <!-- PERSONAL INFO -->
         <h2>Personal Information</h2>
         <div class="box">
             <p><span class="title">Name:</span> Nguyen Thi Thu Hoa</p>
             <p><span class="title">Date of Birth:</span> 18/11/2005</p>
         </div>
 
+        <!-- CONTACT -->
         <h2>Contact</h2>
         <div class="box social">
             <p>Email: <a href="mailto:K62.2314510045@ftu.edu.vn">K62.2314510045@ftu.edu.vn</a></p>
         </div>
 
+        <!-- EDUCATION -->
         <h2>Education</h2>
         <div class="box">
             <p><span class="title">Foreign Trade University – Hanoi</span></p>
             <p>Major: International Business</p>
         </div>
 
-        <h2>Experience</h2>
-        <div class="box">
-            <ul>
-                <li>Designing (social visuals, layout, creative materials)</li>
-                <li>Video editing</li>
-                <li>Marketing (content, social media, basic planning)</li>
-            </ul>
+        <!-- EXPERIENCE & ACHIEVEMENTS -->
+        <h2>Experience & Achievements</h2>
+        <div class="box timeline-wrapper">
+            <div class="timeline">
+
+                <!-- EXPERIENCE ITEMS -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-tag">Experience</span>
+                        <p class="timeline-role">Marketing Part-time</p>
+                        <p class="timeline-place">Chengyi Newsouth Vietnam Co., Ltd</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-tag">Experience</span>
+                        <p class="timeline-role">Media Collaborator</p>
+                        <p class="timeline-place">HED High Quality Human Resource Development Co., Ltd</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-tag">Experience</span>
+                        <p class="timeline-role">Vice Head of the Media Department</p>
+                        <p class="timeline-place">FTU Chinese Club</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-tag">Experience</span>
+                        <p class="timeline-role">Short-term Projects</p>
+                        <ul class="timeline-list">
+                            <li><b>Collaborator, Staff:</b> RecyBot – P4G Summit 2024</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- DIVIDER -->
+                <div class="timeline-divider">Achievements</div>
+
+                <!-- ACHIEVEMENTS -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-tag timeline-tag--soft">Achievement</span>
+                        <ul class="timeline-list">
+                            <li>Top30 TechGo</li>
+                            <li>Top15 We Are Hoteliers</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
+        <!-- SKILLS -->
+        <h2>Skills</h2>
+        <div class="box">
+            <div class="skills-container">
+
+                <div class="skill-box">
+                    <h3>Soft Skills</h3>
+                    <ul>
+                        <li>Teamwork</li>
+                        <li>Creativity</li>
+                        <li>Critical thinking</li>
+                        <li>Leadership</li>
+                    </ul>
+                </div>
+
+                <div class="skill-box">
+                    <h3>Design Skills</h3>
+                    <ul>
+                        <li>Adobe Illustrator</li>
+                        <li>Adobe Photoshop</li>
+                        <li>Canva</li>
+                        <li>Capcut</li>
+                        <li>Figma</li>
+                    </ul>
+                </div>
+
+                <div class="skill-box">
+                    <h3>Language</h3>
+                    <ul>
+                        <li>English</li>
+                        <li>Chinese</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- MY THINGS -->
         <h2>My Things</h2>
         <div class="box">
             <div class="gallery">
@@ -220,6 +476,7 @@
                 </div>
             </div>
         </div>
+
     </section>
 
     <footer>
